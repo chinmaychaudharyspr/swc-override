@@ -28,6 +28,10 @@ impl<'a> StringInput<'a> {
     /// If you are not going to use methods from
     /// [SourceMap], you may use any value.
     pub fn new(src: &'a str, start: BytePos, end: BytePos) -> Self {
+        if start > end {
+            println!("Assertion failed: start > end");
+            println!("Source: {}", src);
+        }
         assert!(start <= end);
 
         StringInput {
